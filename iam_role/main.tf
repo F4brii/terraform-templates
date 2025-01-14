@@ -3,7 +3,7 @@ resource "aws_iam_role" "this" {
   path        = var.path
   description = var.description
 
-  assume_role_policy = jsondecode({
+  assume_role_policy = jsonencode({
     Version = var.Version
     Statement = [
       for stmt in var.Statement : {
