@@ -17,11 +17,11 @@ resource "aws_subnet" "public" {
   vpc_id                  = aws_vpc.this.id
   cidr_block              = each.value
   map_public_ip_on_launch = true
-  availability_zone       = element(data.aws_availability_zones.available.names, index(var.public_subnets, each.value))
+  availability_zone       = element(var.availability_zones, index(var.public_subnets, each.value))
 
   tags = merge(
     {
-      Name = "${var.vpc_name}-public-${each.key}"
+      Name = "public-subnet-${each.value}"
     },
     var.tags
   )
@@ -32,11 +32,11 @@ resource "aws_subnet" "private" {
 
   vpc_id            = aws_vpc.this.id
   cidr_block        = each.value
-  availability_zone = element(data.aws_availability_zones.available.names, index(var.private_subnets, each.value))
+  availability_zone = element(var.availability_zones, index(var.private_subnets, each.value))
 
   tags = merge(
     {
-      Name = "${var.vpc_name}-private-${each.key}"
+      Name = "private-subnet-${each.value}"
     },
     var.tags
   )
