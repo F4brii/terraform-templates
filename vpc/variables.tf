@@ -23,3 +23,8 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "availability_zones" {
+  description = "List of availability zones to use for the subnets"
+  type        = list(string)
+}
