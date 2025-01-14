@@ -10,8 +10,8 @@ resource "aws_iam_role" "this" {
         Action = stmt.Action
         Effect = stmt.Effect
         Principal = {
-          Service = stmt.Principal.service
-          AWS     = stmt.Principal.aws
+          Service = stmt.Principal.Service
+          AWS     = stmt.Principal.AWS
         }
       }
     ]
