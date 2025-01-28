@@ -20,5 +20,5 @@ output "table_stream_arn" {
 
 output "global_secondary_indexes" {
   description = "Lista de índices secundarios globales"
-  value       = aws_dynamodb_table.this.global_secondary_indexes[*].name
+  value       = [for gsi in aws_dynamodb_table.this.global_secondary_index : gsi.name]
 }
